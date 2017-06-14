@@ -1,0 +1,16 @@
+{
+  "name": "pluralsight-scraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "async.parallellimit": "^0.5.2",
+    "nightmare": "^2.10.0",
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
