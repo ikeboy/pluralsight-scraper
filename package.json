@@ -1,7 +1,7 @@
 {
   "name": "pluralsight-scraper",
   "version": "1.0.0",
-  "description": "",
+  "description": "A scraper for pluralsight's library meant to download video files for offline viewing.",
   "main": "index.js",
   "dependencies": {
     "async.parallellimit": "^0.5.2",
@@ -12,6 +12,20 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Slava Knyazev",
+  "license": "GPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/knyzorg/pluralsight-scraper.git"
+  },
+  "keywords": [
+    "pluralsight",
+    "scraper",
+    "downloader",
+    "ripper"
+  ],
+  "bugs": {
+    "url": "https://github.com/knyzorg/pluralsight-scraper/issues"
+  },
+  "homepage": "https://github.com/knyzorg/pluralsight-scraper#readme"
 }
