@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "async.parallellimit": "^0.5.2",
-    "nightmare": "^2.10.0",
+    "nightmare": "^2.10.0"
   },
   "devDependencies": {},
   "scripts": {
