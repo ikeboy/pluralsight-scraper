@@ -4,7 +4,7 @@
 
 This a pluralsight scraper/downloader/ripper. While not a marvel of engineering, it can automatically download individual courses and save them in a convenient format. **This project does not endorse piracy and requires a valid pluralsight login to function!**
 
-![Format](http://i.imgur.com/4VeULGk.png)
+![Sample Output](http://i.imgur.com/flqcOH4.png)
 
 ## Why?
 
