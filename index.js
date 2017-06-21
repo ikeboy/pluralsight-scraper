@@ -115,7 +115,6 @@ function saveVideo(course, number) {
 }
 
 function terminate() {
-    console.log("Completed!")
-    console.log("Please keep these files for personal use to support the authors.")
+    console.log("Operation Completed!")
     process.exit(0)
 }
