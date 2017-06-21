@@ -1,30 +1,24 @@
-var ProgressBar = require('progress');
-var Nightmare = require('nightmare');
-var nightmare = Nightmare({ show: false });
-
-var http = require('http');
-var fs = require("fs");
 /*** CONFIGURATION ***/
 
-//Link to the table of contents of the course you want
-var target =
-    "https://app.pluralsight.com/library/courses/speaking-fundamentals/table-of-contents";
+// Link to the table of contents of the course you want
+var target = "https://app.pluralsight.com/library/courses/speaking-fundamentals/table-of-contents";
 
-//It will be saved to videos/folder-you-want
-//var saveTo = "D3: The Big Picture"
-
-//You need to login
-
+// Your login details
 var user = {
     email: "john.doe@gmail.com",
     password: "P45$W0RD123"
 }
 
 /*** DAH CODEZ ***/
+var ProgressBar = require('progress');
+var Nightmare = require('nightmare');
+var nightmare = Nightmare({ show: false });
 
-console.log(`
-Slava Knyazev:
-This program was written for EDUCATION and PERSONAL USE ONLY
+var http = require('http');
+var fs = require("fs");
+
+
+console.log(`This program was written for EDUCATION and PERSONAL USE ONLY
 Please be respectful of the original authors' intellectual property
 
 This scraper is open source and licensed under GPLv2 on Github
@@ -36,9 +30,8 @@ console.log("Logging in...")
 var numberOfFiles, completed, saveTo, progress = 0;
 nightmare
     .goto('https://app.pluralsight.com/id/')
-    .wait(1000)
-    .type('#Username', user.email)
-    .type('#Password', user.password)
+    .insert('#Username', user.email)
+    .insert('#Password', user.password)
     .click('button.button.primary')
     .wait(5000)
     .goto(target)
@@ -58,6 +51,12 @@ nightmare
     })
     .then(function (module) {
         numberOfFiles = module.courses.length;
+        if (!numberOfFiles){
+            console.error("Wrong login credentials!")
+            process.exit(1)
+            return;
+        }
+        console.log("Logged in!")
         saveTo = module.title.replace(" | Pluralsight", "");
         console.log(`Downloading "${saveTo}" from PluralSight, ${numberOfFiles} videos`)
         progress = new ProgressBar(':current/:total [:bar] :percent :etas', { total: numberOfFiles, callback: terminate })
