@@ -1,12 +1,12 @@
 /*** CONFIGURATION ***/
 
 // Link to the table of contents of the course you want
-var target = "https://app.pluralsight.com/library/courses/speaking-fundamentals/table-of-contents";
+var target = "https://app.pluralsight.com/library/courses/angular-2-getting-started/table-of-contents";
 
 // Your login details
 var user = {
-    email: "john.doe@gmail.com",
-    password: "P45$W0RD123"
+    email: "email",
+    password: "password"
 }
 
 /*** DAH CODEZ ***/
@@ -67,7 +67,7 @@ nightmare
         ))
         require("async.parallellimit")(tasks, 1, function () {
         });
-    })
+    }).catch((e) => console.log(e))
 
 function scrape(course, index, callback) {
     nightmare.goto(course.url)
@@ -88,7 +88,7 @@ function scrape(course, index, callback) {
             course.src = result
             saveVideo(course, index + 1)
             callback()
-        })
+        }).catch((e) => console.log(e))
 }
 
 function saveVideo(course, number) {
