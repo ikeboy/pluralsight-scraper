@@ -1,12 +1,12 @@
 /*** CONFIGURATION ***/
 
 // Link to the table of contents of the course you want
-var target = "https://app.pluralsight.com/library/courses/speaking-fundamentals/table-of-contents";
+var target = "https://app.pluralsight.com/library/courses/angular-2-getting-started/table-of-contents";
 
 // Your login details
 var user = {
-    email: "john.doe@gmail.com",
-    password: "P45$W0RD123"
+    email: "slava@knyz.org",
+    password: "vv@@lxd!!bb3"
 }
 
 /*** DAH CODEZ ***/
@@ -33,9 +33,9 @@ nightmare
     .insert('#Username', user.email)
     .insert('#Password', user.password)
     .click('button.button.primary')
-    .wait(5000)
+    .wait(1000)
     .goto(target)
-    .wait(5000)
+    .wait(3000)
     .evaluate(function () {
         var courses = [];
         document.querySelectorAll(".table-of-contents__clip-list-item a").forEach((course) => {
@@ -69,7 +69,7 @@ nightmare
         });
     })
 
-function scrape(course, index, callback) {
+function scrape(course, index, callback, delay=1500) {
     nightmare.goto(course.url)
         .wait("video")
         .wait(1500)
@@ -81,7 +81,7 @@ function scrape(course, index, callback) {
 
             if (!result) {
                 progress.interrupt("Something went wrong. Retrying...")
-                scrape(...arguments)
+                scrape(course, index, callback, delay+500)
                 return
             }
 
