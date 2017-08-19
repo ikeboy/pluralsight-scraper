@@ -33,9 +33,9 @@ nightmare
     .insert('#Username', user.email)
     .insert('#Password', user.password)
     .click('button.button.primary')
-    .wait(5000)
+    .wait(1000)
     .goto(target)
-    .wait(5000)
+    .wait(3000)
     .evaluate(function () {
         var courses = [];
         document.querySelectorAll(".table-of-contents__clip-list-item a").forEach((course) => {
@@ -69,7 +69,7 @@ nightmare
         });
     }).catch((e) => console.log(e))
 
-function scrape(course, index, callback) {
+function scrape(course, index, callback, delay=1500) {
     nightmare.goto(course.url)
         .wait("video")
         .wait(1500)
@@ -81,7 +81,7 @@ function scrape(course, index, callback) {
 
             if (!result) {
                 progress.interrupt("Something went wrong. Retrying...")
-                scrape(...arguments)
+                scrape(course, index, callback, delay+500)
                 return
             }
 
