@@ -5,8 +5,8 @@ var target = "https://app.pluralsight.com/library/courses/angular-2-getting-star
 
 // Your login details
 var user = {
-    email: "slava@knyz.org",
-    password: "vv@@lxd!!bb3"
+    email: "email",
+    password: "password"
 }
 
 /*** DAH CODEZ ***/
@@ -67,7 +67,7 @@ nightmare
         ))
         require("async.parallellimit")(tasks, 1, function () {
         });
-    })
+    }).catch((e) => console.log(e))
 
 function scrape(course, index, callback, delay=1500) {
     nightmare.goto(course.url)
@@ -88,7 +88,7 @@ function scrape(course, index, callback, delay=1500) {
             course.src = result
             saveVideo(course, index + 1)
             callback()
-        })
+        }).catch((e) => console.log(e))
 }
 
 function saveVideo(course, number) {
