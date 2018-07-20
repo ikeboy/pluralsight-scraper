@@ -99,10 +99,10 @@ function saveVideo(course, number) {
     if (!fs.existsSync("videos/" + saveTo)) {
         fs.mkdirSync("videos/" + saveTo);
     }
-    if (fs.existsSync("videos/" + saveTo + "/" + number + ". " + course.name.replace(/[^a-z']/ig, "") + ".webm")) {
+    if (fs.existsSync("videos/" + saveTo + "/" + number + ". " + course.name.replace(/[^a-z]/ig, "") + ".webm")) {
         return;
     }
-    var file = fs.createWriteStream("videos/" + saveTo + "/" + number + ". " + course.name.replace(/[^a-z']/ig, "") + ".webm");
+    var file = fs.createWriteStream("videos/" + saveTo + "/" + number + ". " + course.name.replace(/[^a-z]/ig, "") + ".webm");
     var request = https.get(course.src,(response) => {
         progress.tick()
         response.pipe(file);
