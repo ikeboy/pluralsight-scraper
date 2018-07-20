@@ -19,11 +19,18 @@ With [nightmare](https://github.com/segmentio/nightmare). Code is short and unde
 
 ## Usage
 
-Modify `index.js` to put in whatever you want and then in terminal run the following commands:
+  1. Clone the repo `git clone https://github.com/knyzorg/pluralsight-scraper`
 
-    git clone https://github.com/knyzorg/pluralsight-scraper
-    npm install
-    npm start
+  2. Create a `.env` file and add your username, password and pluralsight course url. It's contents should look something like this:
+  ```
+    TARGET=https://app.pluralsight.com/library/courses/angular-2-getting-started/table-of-contents
+    EMAIL=foo@exampkle.com
+    PASSWORD=foo
+  ```
+
+  3. Run `npm install`
+
+  4. Run `npm start`
 
 ## Isn't this against Pluralsight's Terms of Service?
 

@@ -1,12 +1,12 @@
-/*** CONFIGURATION ***/
+require('dotenv').config()
 
 // Link to the table of contents of the course you want
-var target = "https://app.pluralsight.com/library/courses/angular-2-getting-started/table-of-contents";
+var target = process.env.TARGET;
 
 // Your login details
 var user = {
-    email: "email",
-    password: "password"
+    email: process.env.EMAIL,
+    password: process.env.PASSWORD
 }
 
 /*** DAH CODEZ ***/
@@ -14,7 +14,7 @@ var ProgressBar = require('progress');
 var Nightmare = require('nightmare');
 var nightmare = Nightmare({ show: false });
 
-var http = require('http');
+var https = require('https');
 var fs = require("fs");
 
 
@@ -32,7 +32,7 @@ nightmare
     .goto('https://app.pluralsight.com/id/')
     .insert('#Username', user.email)
     .insert('#Password', user.password)
-    .click('button.button.primary')
+    .click('#login')
     .wait(1000)
     .goto(target)
     .wait(3000)
@@ -99,11 +99,11 @@ function saveVideo(course, number) {
     if (!fs.existsSync("videos/" + saveTo)) {
         fs.mkdirSync("videos/" + saveTo);
     }
-    if (fs.existsSync("videos/" + saveTo + "/" + number + ". " + course.name.replace("/", "") + ".webm")) {
+    if (fs.existsSync("videos/" + saveTo + "/" + number + ". " + course.name.replace(/[^a-z']/ig, "") + ".webm")) {
         return;
     }
-    var file = fs.createWriteStream("videos/" + saveTo + "/" + number + ". " + course.name.replace("/", "") + ".webm");
-    var request = http.get(course.src,(response) => {
+    var file = fs.createWriteStream("videos/" + saveTo + "/" + number + ". " + course.name.replace(/[^a-z']/ig, "") + ".webm");
+    var request = https.get(course.src,(response) => {
         progress.tick()
         response.pipe(file);
         completed++;
