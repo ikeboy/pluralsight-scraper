@@ -38,7 +38,7 @@ nightmare
     .wait(3000)
     .evaluate(function () {
         var courses = [];
-        document.querySelectorAll(".table-of-contents__clip-list-item a").forEach((course) => {
+        document.querySelectorAll('a[class^="clipListTitle"').forEach((course) => {
             courses.push({
                 name: course.text,
                 url: course.href
