@@ -17,6 +17,7 @@ var nightmare = Nightmare({ show: false });
 var https = require('https');
 var fs = require("fs");
 
+var useragent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'
 
 console.log(`This program was written for EDUCATION and PERSONAL USE ONLY
 Please be respectful of the original authors' intellectual property
@@ -29,6 +30,7 @@ console.log("Logging in...")
 
 var numberOfFiles, completed, saveTo, progress = 0;
 nightmare
+    .useragent(useragent)
     .goto('https://app.pluralsight.com/id/')
     .insert('#Username', user.email)
     .insert('#Password', user.password)
@@ -70,7 +72,9 @@ nightmare
     }).catch((e) => console.log(e))
 
 function scrape(course, index, callback, delay=1500) {
-    nightmare.goto(course.url)
+    nightmare
+        .useragent(useragent)
+        .goto(course.url)
         .wait("video")
         .wait(1500)
         .evaluate(() => {
