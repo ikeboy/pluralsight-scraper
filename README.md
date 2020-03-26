@@ -1,3 +1,5 @@
+> Maintainer is currently inactive on the project due to not having a pluralsight subscription. If you're interested in supporting futher development, contact me at slava[at]knyazev.io
+
 # Pluralsight Scraper
 
 ## What is this?
