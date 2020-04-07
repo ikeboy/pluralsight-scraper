@@ -1,13 +1,11 @@
 {
   "name": "pluralsight-scraper",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A scraper for pluralsight's library meant to download video files for offline viewing.",
   "main": "index.js",
   "dependencies": {
-    "async.parallellimit": "^0.5.2",
-    "dotenv": "^6.0.0",
-    "nightmare": "^2.10.0",
-    "progress": "^2.0.0"
+    "node-fetch": "^2.6.0",
+    "puppeteer": "^2.1.1"
   },
   "devDependencies": {},
   "scripts": {
