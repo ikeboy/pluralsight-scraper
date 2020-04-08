@@ -1,10 +1,8 @@
-> Maintainer is currently inactive on the project due to not having a pluralsight subscription. If you're interested in supporting futher development, contact me at slava[at]knyazev.io
-
 # Pluralsight Scraper
 
 ## What is this?
 
-This a pluralsight scraper/downloader/ripper. While not a marvel of engineering, it can automatically download individual courses and save them in a convenient format. **This project does not endorse piracy and requires a valid pluralsight login to function!**
+This is the second iteration of the pluralsight scraper. It is used to retrieve mp4 video files by scraping pluralsight's website using its own API. **This project does not endorse piracy and requires a valid pluralsight login to function!**
 
 ![Sample Output](http://i.imgur.com/flqcOH4.png)
 
@@ -17,22 +15,17 @@ Pluralsight doesn't have a way to play videos offline **on Linux** as far as I k
 
 ## How?
 
-With [nightmare](https://github.com/segmentio/nightmare). Code is short and understandable. Won't bother explaining details.
+The script launches a pupputeer.js chromium instance, which it uses to allow you to interactively authenticate with the real website. Once logged in, it will save your cookies to a separate file (`cookies.txt`) in order to authenticate the API requests required to download the video files.
 
 ## Usage
 
   1. Clone the repo `git clone https://github.com/knyzorg/pluralsight-scraper`
 
-  2. Create a `.env` file and add your username, password and pluralsight course url. It's contents should look something like this:
-  ```
-    TARGET=https://app.pluralsight.com/library/courses/angular-2-getting-started/table-of-contents
-    EMAIL=foo@exampkle.com
-    PASSWORD=foo
-  ```
+  2. Run `npm install` to install the dependencies
 
-  3. Run `npm install`
+  4. Run `npm run login` to open a session
 
-  4. Run `npm start`
+  5. Run `npm run get -- "https://app.pluralsight.com/library/courses/rust-fundamentals/table-of-contents"` to begin downloading the course
 
 ## Isn't this against Pluralsight's Terms of Service?
 
@@ -40,10 +33,6 @@ Yes it is: [Refer to Section 5](https://www.pluralsight.com/terms)
 
 >The applicable License granted you by these Terms of Use is a right of access through the Site only, and does not grant to you any right to download or store any Proprietary Materials in any medium[...]
 
+## Detection Evasion
 
-
-## It throws a promise error! It doesn't work! I don't like javascript!
-
-How tragic! This script was written in half an hour for personal use, sorry if it isn't tested properly. You are free to open issues and pull requests.
-
-Otherwise, there is a similar project here made in python: https://github.com/Stormiix/pluralsight_scraper
+There is a relatively high likely-hood that your account will be flagged for running this script. It is very difficult to evade such things and the current strategy is to naively wait 30 seconds between requests.
