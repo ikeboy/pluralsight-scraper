@@ -1,4 +1,6 @@
 const puppeteer = require('puppeteer');
+const puppeteerExtra = require('puppeteer-extra');
+const pluginStealth = require('puppeteer-extra-plugin-stealth');
 const fs = require("fs");
 const path = require("path");
 const fetch = require("node-fetch");
@@ -36,8 +38,8 @@ async function downloadCourse(courseId, cookie) {
         .reduce((a, b) => [...a, ...b], [])
         // Reformat a bit, get rid of all the unncessary information, generate title
         .map(async (video, index) => {
-            // Wait 30 seconds after each request to avoid throttling
-            await wait(30000 * index);
+            // Wait 137 seconds after each request to avoid throttling
+            await wait(137000 * index);
             // Add numbering for proper sequencing
             // Strip title of illegal chars
             const title = `${index + 1}. ${video.title.replace(/[|&;$%@"<>()+,]/g, "")}`;
@@ -90,7 +92,8 @@ async function downloadCourse(courseId, cookie) {
 
 // Retrieve login cookies
 async function login() {
-    const browser = await puppeteer.launch({ headless: false });
+    puppeteerExtra.use(pluginStealth());
+	const browser = await puppeteerExtra.launch({ headless: false });
     const page = await browser.newPage();
     await page.goto('https://app.pluralsight.com/id/');
 
