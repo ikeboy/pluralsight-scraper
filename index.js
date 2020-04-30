@@ -60,7 +60,7 @@ async function downloadCourse(courseId, cookie) {
             return {
                 index: 0,
                 async next() {
-                    return { value: (await videos[this.index++]), done: this.index + 1 == videos.length };
+                    return { value: (await videos[this.index++]), done: this.index - 1 == videos.length };
                 }
             };
         }
