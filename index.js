@@ -9,7 +9,7 @@ const argv = require('yargs').argv;
 const wait = ms => new Promise(r => setTimeout(r, ms));
 
 function courseIdFromUrl(url) {
-    return /library\/courses\/([a-z\-]+)/gi.exec(url)[1];
+    return /library\/courses\/([a-z0-9\-]+)/gi.exec(url)[1];
 }
 
 
