@@ -1,3 +1,6 @@
 node_modules
 videos
 cookies.txt
+package-lock.json
+.env
+.gitignore
