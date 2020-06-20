@@ -42,7 +42,7 @@ async function downloadCourse(courseId, cookie) {
             await wait(137000 * index);
             // Add numbering for proper sequencing
             // Strip title of illegal chars
-            const title = `${index + 1}. ${video.title.replace(/[:|&;$%@"<>()+,/]/g, "")}`;
+            const title = `${index + 1}. ${video.title.replace(/[:?*|&;$%@"<>()+,\/]/g, "")}`;
 
             console.log(`Retrieving metadata for: ${title}`);
 
@@ -67,7 +67,7 @@ async function downloadCourse(courseId, cookie) {
     };
 
     const videoPath = path.join(__dirname, "videos");
-    const coursePath = path.join(videoPath, courseId.replace(/[:|&;$%@"<>()+,]/g, ""));
+    const coursePath = path.join(videoPath, courseId.replace(/[:?*|&;$%@"<>()+,\/]/g, ""));
 
     if (!fs.existsSync(videoPath)) {
         fs.mkdirSync(videoPath);
